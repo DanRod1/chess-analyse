@@ -5,7 +5,10 @@ import re
 class Stats():  
     def __init__(self):
         super().__init__() 
-        print("Predictive Strikes") 
+        print("Predictive Strikes")
+        self.WhiteGame = []
+        self.BlackGame = []
+        self.query = ''
 
     def parseARgs(self):
         parser = argparse.ArgumentParser(description='statitisque player chessStrike')
@@ -63,18 +66,35 @@ class Stats():
         self.query += f'OWNER to chess;'
         self.executeSql()
 
+    def getStrikeWhite(self):
         # get gamed_id
         self.query = f'select COALESCE(max(game_id),0) from public."strikesStats"'
         self.executeSql(type = 'select')
-        game_id = self.selectFetchDb[0][0]
+        self.game_id = self.selectFetchDb[0][0]
 
         #get totalStrikes when white
         self.query = f"select jsonb_array_elements(strikes->'strikes'), color, strikes->'winner', id from public.\"games\" where playername = '{self.username}' and color = 'White'"
         self.executeSql(type = 'select')
+        self.WhiteGame = self.selectFetchDb
 
-        memCache = self.selectFetchDb
+    def getStrikeBlack(self):
+        # get gamed_id
+        self.query = f'select COALESCE(max(game_id),0) from public."strikesStats"'
+        self.executeSql(type = 'select')
+        self.game_id = self.selectFetchDb[0][0]
+
+        #get totalStrikes when white
+        self.query = f"select jsonb_array_elements(strikes->'strikes'), color, strikes->'winner', id from public.\"games\" where playername = '{self.username}' and color = 'Black'"
+        self.executeSql(type = 'select')
+        self.BlackGame = self.selectFetchDb
+    
+    def populateStrike(self, color :str):
+        if color == 'White' :
+            strikes = self.wWiteGame
+        else:
+            strikes = self.BlackGame
         count = 0
-        for row in memCache:
+        for row in self.whiteGame :
             count += 1
             pattern= '^(\d+)\. ([\w\-\+\#\=]+) {\[%clk (.*)\]} ([\w\-\+\#\=]+) {\[%clk (.*)\]}'
             patternMate= '^(\d+)\. ([\w\-\+\#\=]+) {\[%clk (.*)\]}(.*)'
@@ -97,11 +117,11 @@ class Stats():
             player_color = row[1]
             winner = {self.username} if row[2] == player_color else 'opponnent'
             archive_id = row[3]
-            if int(strike_number) == 1 : game_id += 1 
+            if int(strike_number) == 1 : self.game_id += 1 
             self.query = f'insert into public."strikesStats" '
             self.query += f'( strike_number, strike, player_color, response, delay, game_id, player_name, winner, archive_id ) '
             self.query += f'values '
-            self.query += f"({strike_number}, '{strike}', '{player_color}', '{response}', '{delay}', {game_id}, '{self.username}', '{winner}', {archive_id})"
+            self.query += f"({strike_number}, '{strike}', '{player_color}', '{response}', '{delay}', {self.game_id }, '{self.username}', '{winner}', {archive_id})"
             self.executeSql()
 
 if __name__ == "__main__" :
@@ -109,3 +129,7 @@ if __name__ == "__main__" :
     initStat.parseARgs()
     initStat.connectDb()
     initStat.createStrikeTable()
+    initStat.getStrikeWhite()
+    initStat.getStrikeBlack()
+    initStat.populateStrike(color = 'White')
+    initStat.populateStrike(color = 'Black')
