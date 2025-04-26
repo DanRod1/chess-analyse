@@ -2,4 +2,59 @@
     "games": [
         {
             "url": "https://www.chess.com/game/live/27104516821",
-            "pgn": "[Event \\"Live Chess - Crazyhouse\\"]\\n[Site \\"Chess.com\\"]\\n[Date \\"2021.10.04\\"]\\n[Round \\"-\\"]\\n[White \\"vladalekic\\"]\\n[Black \\"DiegitON\\"]\\n[Result \\"1-0\\"]\\n[Variant \\"Crazyhouse\\"]\\n[SetUp \\"1\\"]\\n[FEN \\"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR/ w KQkq - 0 1\\"]\\n[CurrentPosition \\"rn2kbnr/ppp3pp/3ppq2/4p3/4P3/2N2N1P/PPPP1PP1/R1BQK2R b KQkq -\\"]\\n[Timezone \\"UTC\\"]\\n[ECO \\"C41\\"]\\n[ECOUrl \\"https: //www.chess.com/openings/Philidor-Defense-3.Bc4\\"]\\n[UTCDate \\"2021.10.04\\"]\\n[UTCTime \\"16:40:03\\"]\\n[WhiteElo \\"1939\\"]\\n[BlackElo \\"799\\"]\\n[TimeControl \\"60\\"]\\n[Termination \\"vladalekic won on time\\"]\\n[StartTime \\"16:40:03\\"]\\n[EndDate \\"2021.10.04\\"]\\n[EndTime \\"16:41:13\\"]\\n[Link \\"https://www.chess.com/game/live/27104516821\\"]\\n\\n1. e4 {[%clk 0:00:59.9]} 1... e5 {[%clk 0:00:53]} 2. Nf3 {[%clk 0:00:58.6]} 2... d6 {[%clk 0:00:45.4]} 3. Bc4 {[%clk 0:00:55.5]} 3... Be6 {[%clk 0:00:29.9]} 4. Bxe6 {[%clk 0:00:53.5]} 4... fxe6 {[%clk 0:00:25]} 5. Nc3 {[%clk 0:00:53.4]} 5... Qf6 {[%clk 0:00:03.7]} 6. h3 {[%clk 0:00:53.3]} 1-0\\n","time_control":"60","end_time":1633365673,"rated":true,"tcn":"mC0KgvZRfA6SAS1Sbs7Tpx","uuid":"b7e02d26-2531-11ec-b743-09ff3c010001","initial_setup":"","fen":"rn2kbnr/ppp3pp/3ppq2/4p3/4P3/2N2N1P/PPPP1PP1/R1BQK2R b KQkq -","time_class":"bullet","rules":"crazyhouse","white":{"rating":1939,"result":"win","@id":"https://api.chess.com/pub/player/vladalekic","username":"vladalekic","uuid":"699ff658-0893-11e7-8022-000000000000"},"black":{"rating":799,"result":"timeout","@id":"https://api.chess.com/pub/player/diegiton","username":"DiegitON","uuid":"505848b2-2526-11ec-8ee5-eb36116abf2b"},"eco":"https://www.chess.com/openings/Philidor-Defense-3.Bc4"},{"url":"https://www.chess.com/game/live/27104557741","pgn":"[Event \\"Live Chess - Crazyhouse\\"]\\n[Site \\"Chess.com\\"]\\n[Date \\"2021.10.04\\"]\\n[Round \\"-\\"]\\n[White \\"how_i_call_myself\\"]\\n[Black \\"DiegitON\\"]\\n[Result \\"1-0\\"]\\n[Variant \\"Crazyhouse\\"]\\n[SetUp \\"1\\"]\\n[FEN \\"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR/ w KQkq - 0 1\\"]\\n[CurrentPosition \\"rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3\\"]\\n[Timezone \\"UTC\\"]\\n[ECO \\"B00\\"]\\n[ECOUrl \\"https://www.chess.com/openings/Kings-Pawn-Opening\\"]\\n[UTCDate \\"2021.10.04\\"]\\n[UTCTime \\"16:42:30\\"]\\n[WhiteElo \\"1246\\"]\\n[BlackElo \\"759\\"]\\n[TimeControl \\"60\\"]\\n[Termination \\"how_i_call_myself won on time\\"]\\n[StartTime \\"16:42:30\\"]\\n[EndDate \\"2021.10.04\\"]\\n[EndTime \\"16:43:31\\"]\\n[Link \\"https://www.chess.com/game/live/27104557741\\"]\\n\\n1. e4 {[%clk 0:00:59.9]} 1-0\\n","time_control":"60","end_time":1633365811,"rated":true,"tcn":"mC","uuid":"0b658e6e-2532-11ec-b743-09ff3c010001","initial_setup":"","fen":"rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3","time_class":"bullet","rules":"crazyhouse","white":{"rating":1246,"result":"win","@id":"https://api.chess.com/pub/player/how_i_call_myself","username":"how_i_call_myself","uuid":"a6e5b276-a4c7-11eb-84e0-db5f60204c63"},"black":{"rating":759,"result":"timeout","@id":"https://api.chess.com/pub/player/diegiton","username":"DiegitON","uuid":"505848b2-2526-11ec-8ee5-eb36116abf2b"},"eco":"https://www.chess.com/openings/Kings-Pawn-Opening"}]}'
+            "pgn": "[Event \"Live Chess - Crazyhouse\"]\n[Site \"Chess.com\"]\n[Date \"2021.10.04\"]\n[Round \"-\"]\n[White \"vladalekic\"]\n[Black \"DiegitON\"]\n[Result \"1-0\"]\n[Variant \"Crazyhouse\"]\n[SetUp \"1\"]\n[FEN \"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR/ w KQkq - 0 1\"]\n[Tournament \"https://www.chess.com/tournament/live/10-crazyhouse-2639913\"]\n[CurrentPosition \"rn2kbnr/ppp3pp/3ppq2/4p3/4P3/2N2N1P/PPPP1PP1/R1BQK2R b KQkq -\"]\n[Timezone \"UTC\"]\n[ECO \"C41\"]\n[ECOUrl \"https://www.chess.com/openings/Philidor-Defense-3.Bc4\"]\n[UTCDate \"2021.10.04\"]\n[UTCTime \"16:40:03\"]\n[WhiteElo \"1939\"]\n[BlackElo \"799\"]\n[TimeControl \"60\"]\n[Termination \"vladalekic won on time\"]\n[StartTime \"16:40:03\"]\n[EndDate \"2021.10.04\"]\n[EndTime \"16:41:13\"]\n[Link \"https://www.chess.com/game/live/27104516821\"]\n\n1. e4 {[%clk 0:00:59.9]} 1... e5 {[%clk 0:00:53]} 2. Nf3 {[%clk 0:00:58.6]} 2... d6 {[%clk 0:00:45.4]} 3. Bc4 {[%clk 0:00:55.5]} 3... Be6 {[%clk 0:00:29.9]} 4. Bxe6 {[%clk 0:00:53.5]} 4... fxe6 {[%clk 0:00:25]} 5. Nc3 {[%clk 0:00:53.4]} 5... Qf6 {[%clk 0:00:03.7]} 6. h3 {[%clk 0:00:53.3]} 1-0\n",
+            "time_control": "60",
+            "end_time": 1633365673,
+            "rated": true,
+            "tcn": "mC0KgvZRfA6SAS1Sbs7Tpx",
+            "uuid": "b7e02d26-2531-11ec-b743-09ff3c010001",
+            "initial_setup": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+            "fen": "rn2kbnr/ppp3pp/3ppq2/4p3/4P3/2N2N1P/PPPP1PP1/R1BQK2R b KQkq -",
+            "time_class": "bullet",
+            "rules": "crazyhouse",
+            "white": {
+                "rating": 1939,
+                "result": "win",
+                "@id": "https://api.chess.com/pub/player/vladalekic",
+                "username": "vladalekic",
+                "uuid": "699ff658-0893-11e7-8022-000000000000"
+            },
+            "black": {
+                "rating": 799,
+                "result": "timeout",
+                "@id": "https://api.chess.com/pub/player/diegiton",
+                "username": "DiegitON",
+                "uuid": "505848b2-2526-11ec-8ee5-eb36116abf2b"
+            },
+            "tournament": "https://api.chess.com/pub/tournament/10-crazyhouse-2639913"
+        },
+        {
+            "url": "https://www.chess.com/game/live/27104557741",
+            "pgn": "[Event \"Live Chess - Crazyhouse\"]\n[Site \"Chess.com\"]\n[Date \"2021.10.04\"]\n[Round \"-\"]\n[White \"how_i_call_myself\"]\n[Black \"DiegitON\"]\n[Result \"1-0\"]\n[Variant \"Crazyhouse\"]\n[SetUp \"1\"]\n[FEN \"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR/ w KQkq - 0 1\"]\n[Tournament \"https://www.chess.com/tournament/live/10-crazyhouse-2639913\"]\n[CurrentPosition \"rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3\"]\n[Timezone \"UTC\"]\n[ECO \"B00\"]\n[ECOUrl \"https://www.chess.com/openings/Kings-Pawn-Opening\"]\n[UTCDate \"2021.10.04\"]\n[UTCTime \"16:42:30\"]\n[WhiteElo \"1246\"]\n[BlackElo \"759\"]\n[TimeControl \"60\"]\n[Termination \"how_i_call_myself won on time\"]\n[StartTime \"16:42:30\"]\n[EndDate \"2021.10.04\"]\n[EndTime \"16:43:31\"]\n[Link \"https://www.chess.com/game/live/27104557741\"]\n\n1. e4 {[%clk 0:00:59.9]} 1-0\n",
+            "time_control": "60",
+            "end_time": 1633365811,
+            "rated": true,
+            "tcn": "mC",
+            "uuid": "0b658e6e-2532-11ec-b743-09ff3c010001",
+            "initial_setup": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+            "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3",
+            "time_class": "bullet",
+            "rules": "crazyhouse",
+            "white": {
+                "rating": 1246,
+                "result": "win",
+                "@id": "https://api.chess.com/pub/player/how_i_call_myself",
+                "username": "how_i_call_myself",
+                "uuid": "a6e5b276-a4c7-11eb-84e0-db5f60204c63"
+            },
+            "black": {
+                "rating": 759,
+                "result": "timeout",
+                "@id": "https://api.chess.com/pub/player/diegiton",
+                "username": "DiegitON",
+                "uuid": "505848b2-2526-11ec-8ee5-eb36116abf2b"
+            },
+            "tournament": "https://api.chess.com/pub/tournament/10-crazyhouse-2639913"
+        }
+    ]
+}

@@ -3,6 +3,7 @@ import json
 import re
 import psycopg2
 from pgn_parser import pgn, parser
+import sys
 
 def read(url: str ):
     response = None
@@ -44,6 +45,7 @@ def convertPgn(data: str):
         return json.dumps(jsonDict)
     chessComAdvise = games.tag_pairs['Link']
     strikes = games.movetext
+    jsonDict['totalStrikes'] = len(games.movetext)
 
     for value in strikes:
         values.append(str(value))
@@ -86,7 +88,8 @@ def getIdUser(data: str):
     return jsonData['username']
     
 if __name__ == "__main__" :
-    url = "https://api.chess.com/pub/player/DinaBelenkaya"
+    url = f"https://api.chess.com/pub/player/{sys.argv[1]}"
+    #url = f"https://api.chess.com/pub/player/diegiton"
     data = read(url)
     username = getIdUser(data['content'])
     url = f'https://api.chess.com/pub/player/{username}/games/archives'
@@ -94,5 +97,4 @@ if __name__ == "__main__" :
     archivesGames = getArchives(archivesGamesUrl['content'])
     insertPngValue(urls = archivesGames , user = username)
     
-    print(archivesGames)
 
