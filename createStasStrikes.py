@@ -140,11 +140,40 @@ class Predictive():
     def closeDb(self):
         self.postgresDB.close()
 
+    def parseARgs(self):
+        parser = argparse.ArgumentParser(description='statitisque player chessStrike')
+        parser.add_argument("-u", "--username", action="store", default = 'dinabelenkaya',
+                        help="chesscom user Name")
+        parser.add_argument("-c", "--color", action="store", default = 'dinabelenkaya',
+                        help="chesscom user Name")
+        args = parser.parse_args()
+        self.username = args.username
+        self.color = args.color
+
     def candidateStrike(self,color :str):
         self.query = f'select count(*), strike from public."{self.username}" '
-        self.query += f'where winner = "opponnent" and color = "{color}" group by strike order by 1 desc'
+        self.query += f'where winner = "opponnent" and color = "{self.color}" group by strike order by 1 desc'
         self.executeSql()
         self.firstStrikeCandidate = self.selectFetchDb
+
+    def roadmapWins(self):
+        strike = self.firstStrikeCandidate.split(' ')
+        self.query = f"select count(*), REGEXP_REPLACE(strikes->'strikes'->>{strike[0]+1}, '^(\d+)\. ([\w\-\+\#\=]+)"
+        self.query += f"\{\[%clk (.*)\]\\} ([\w\-\+\#\=]+) \{\[%clk (.*)\]\}', '\1 \2 \4' ) as seq"
+        self.query += f'from public."games" '
+        self.query += f"where playername = '{self.username}' "
+        self.query += f"and strikes->'strikes'->>{strike[0]}  like '%{strike[0]}. {strike[1]}%{strike[2]}%' "
+        self.query += f"and color != strikes->>'winner'"
+        self.query += f"group by seq order by 1 desc"
+        self.executeSql()
+
+        maps = self.selectFetchDb
+        for map in maps: 
+            strike = map.split(' ')       
+            self.executeSql()
+            self.roadmap = self.selectFetchDb
+            print(self.roadmap)
+
 
     def executeSql(self, type :str = 'None'):
         cursor = self.postgresDB.cursor()
@@ -158,8 +187,6 @@ class Predictive():
             cursor.execute("COMMIT") 
         cursor.close()
 
-
-
 if __name__ == "__main__" :
     initStat = Stats()
     initStat.parseARgs()
@@ -170,3 +197,10 @@ if __name__ == "__main__" :
     initStat.populateStrike(color = 'White')
     initStat.populateStrike(color = 'Black')
     initStat.closeDb()
+
+    prediction = Predictive()
+    prediction.parseARgs()
+    prediction.connectDb()
+    prediction.candidateStrike()
+    prediction.closeDb()
+
