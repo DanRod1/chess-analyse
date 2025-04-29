@@ -144,32 +144,27 @@ class Predictive():
         parser = argparse.ArgumentParser(description='statitisque player chessStrike')
         parser.add_argument("-u", "--username", action="store", default = 'dinabelenkaya',
                         help="chesscom user Name")
-        parser.add_argument("-c", "--color", action="store", default = 'white',
-                        help="chesscom user Name")
+        parser.add_argument("-c", "--color", action="store", default = 'White',
+                        help="White or Black for user color")
         args = parser.parse_args()
         self.username = args.username
         self.color = args.color
 
-    def candidateStrike(self,color :str):
-        self.query = f'select count(*), strike from public."{self.username}" '
-        self.query += f'where winner = "opponnent" and color = "{self.color}" group by strike order by 1 desc'
+    def candidateStrike(self):
+        self.query = f'select count(*), strike_number, strike, response from public."{self.username}" '
+        self.query += f'where winner = \'opponnent\' and player_color = \'{self.color}\' group by strike, response, strike_number order by 1 desc'
         self.executeSql()
         self.firstStrikeCandidate = self.selectFetchDb
+        print(self.selectFetchDb)
 
     def roadmapWins(self):
-        strike = self.firstStrikeCandidate.split(' ')
-        self.query = f"select count(*), REGEXP_REPLACE(strikes->'strikes'->>{strike[0]+1}, '^(\d+)\. ([\w\-\+\#\=]+)"
-        self.query += f"\{\[%clk (.*)\]\\} ([\w\-\+\#\=]+) \{\[%clk (.*)\]\}', '\1 \2 \4' ) as seq"
-        self.query += f'from public."games" '
-        self.query += f"where playername = '{self.username}' "
-        self.query += f"and strikes->'strikes'->>{strike[0]}  like '%{strike[0]}. {strike[1]}%{strike[2]}%' "
-        self.query += f"and color != strikes->>'winner'"
-        self.query += f"group by seq order by 1 desc"
-        self.executeSql()
-
-        maps = self.selectFetchDb
-        for map in maps: 
-            strike = map.split(' ')       
+        for strike in self.firstStrikeCandidate : 
+            self.query = r"select count(*), REGEXP_REPLACE(strikes->'strikes'->>1, '^(\d+)\. ([\w\-\+\#\=]+) {\[%clk (.*)\]} ([\w\-\+\#\=]+) {\[%clk (.*)\]}',"
+            self.query += r"'\1 \2 \4' ) as seq from public." + f'"games"'
+            self.query += f"where playername = '{self.username}' "
+            self.query += f"and strikes->'strikes'->>{strike[1]-1}  like '%{strike[1]}. {strike[2]}%{strike[3]}%' "
+            self.query += f"and color != strikes->>'winner'"
+            self.query += f"group by seq order by 1 desc"
             self.executeSql()
             self.roadmap = self.selectFetchDb
             print(self.roadmap)
@@ -179,7 +174,7 @@ class Predictive():
         cursor = self.postgresDB.cursor()
         try:
             cursor.execute(self.query)
-            if type == 'select': self.selectFetchDb = cursor.fetchall() 
+            self.selectFetchDb = cursor.fetchall() 
         except Exception as err:
             print(f'Warning error bypass \n{err}')
             self.postgresDB.rollback()
@@ -202,5 +197,6 @@ if __name__ == "__main__" :
     prediction.parseARgs()
     prediction.connectDb()
     prediction.candidateStrike()
+    prediction.roadmapWins()
     prediction.closeDb()
 
