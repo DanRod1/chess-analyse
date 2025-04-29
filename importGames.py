@@ -51,7 +51,13 @@ def convertPgn(data: str):
         values.append(str(value))
     
     jsonDict['strikes'] = values
-    jsonDict['winner'] = 'White' if games.score.white == 1 else 'Black'
+    if games.score.white == '1' : 
+        jsonDict['winner'] = 'White'
+    elif games.score.black == '1' :
+        jsonDict['winner'] = 'Black'
+    else:
+        jsonDict['winner'] = 'Pat'
+
     jsonDict['status'] = 'OK'
     jsonDict['chesscomadvice'] = chessComAdvise
     return json.dumps(jsonDict)
