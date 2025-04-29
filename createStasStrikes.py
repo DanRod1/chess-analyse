@@ -144,7 +144,7 @@ class Predictive():
         parser = argparse.ArgumentParser(description='statitisque player chessStrike')
         parser.add_argument("-u", "--username", action="store", default = 'dinabelenkaya',
                         help="chesscom user Name")
-        parser.add_argument("-c", "--color", action="store", default = 'dinabelenkaya',
+        parser.add_argument("-c", "--color", action="store", default = 'white',
                         help="chesscom user Name")
         args = parser.parse_args()
         self.username = args.username
