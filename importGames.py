@@ -48,7 +48,13 @@ def convertPgn(data: str):
     jsonDict['totalStrikes'] = len(games.movetext)
 
     for value in strikes:
-        values.append(str(value))
+        pattern= '^(\d+)\. ([\w\-\+\#\=]+) {\[%clk (.*)\]} ([\w\-\+\#\=]+) {\[%clk (.*)\]}'
+        patternMate= '^(\d+)\. ([\w\-\+\#\=]+) {\[%clk (.*)\]}(.*)'
+        if re.match(pattern,str(value)):
+            strike = re.sub(pattern,'\\1. \\2 \\4',str(value))        
+        elif re.match(patternMate,str(value)):
+            strike = re.sub(patternMate,'\\1. \\2 End',str(value))  
+        values.append(str(strike))
     
     jsonDict['strikes'] = values
     if games.score.white == '1' : 

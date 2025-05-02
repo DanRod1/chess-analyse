@@ -1,6 +1,9 @@
 import psycopg2
 import argparse
 import re
+import pandas as pd
+import os
+from tabulate import tabulate
 
 class Stats():  
     def __init__(self):
@@ -36,11 +39,6 @@ class Stats():
         else:
             cursor.execute("COMMIT") 
         cursor.close()
-
-    def strMultipleReplace(self, string: str, replace: list):
-        for exp,rep in replace:
-            string = re.sub(exp,rep,string)
-        return string
     
     def calculDelay(self, string: str):
         list = string.split(':')
@@ -76,7 +74,9 @@ class Stats():
         self.game_id = self.selectFetchDb[0][0]
 
         #get totalStrikes when white
-        self.query = f"select strikes->'strikes'->0, color, strikes->'winner', id from public.\"games\" where playername = '{self.username}' and color = 'White'"
+        self.query = f"select strikes->'strikes'->0, color, strikes->'winner', id from public.\"games\" "
+        self.query += f"where playername = '{self.username}' and color = 'White' "
+        self.query += f"and color != strikes->>'winner' "
         self.executeSql(type = 'select')
         self.WhiteGame = self.selectFetchDb
 
@@ -87,7 +87,9 @@ class Stats():
         self.game_id = self.selectFetchDb[0][0]
 
         #get totalStrikes when white
-        self.query = f"select strikes->'strikes->0', color, strikes->'winner', id from public.\"games\" where playername = '{self.username}' and color = 'Black'"
+        self.query = f"select strikes->'strikes'->0, color, strikes->'winner', id from public.\"games\" "
+        self.query += f"where playername = '{self.username}' and color = 'Black' "
+        self.query += f"and color != strikes->>'winner' "
         self.executeSql(type = 'select')
         self.BlackGame = self.selectFetchDb
     
@@ -99,22 +101,14 @@ class Stats():
         count = 0
         for row in strikes:
             count += 1
+            pattern= '^(\d+)\. ([\w\-\+\#\=]+) ([\w\-\+\#\=]+)'
             if row[0] is None: continue
-            pattern= '^(\d+)\. ([\w\-\+\#\=]+) {\[%clk (.*)\]} ([\w\-\+\#\=]+) {\[%clk (.*)\]}'
-            patternMate= '^(\d+)\. ([\w\-\+\#\=]+) {\[%clk (.*)\]}(.*)'
 
             if re.match(pattern, row[0] ):
                 strike_number = re.sub(pattern,'\\1',row[0])
                 strike = re.sub(pattern,'\\2',row[0])
-                response = re.sub(pattern,'\\4',row[0])
-                tmp = re.sub(pattern,'\\3',row[0])
-            elif re.match(patternMate, row[0] ):
-                strike_number = re.sub(patternMate,'\\1',row[0]) 
-                strike = re.sub(patternMate,'\\2',row[0]) if row[1] == row[2] else 'Mate'
-                response = re.sub(patternMate,'\\2',row[0]) if row[1] != row[2] else 'Mate'
-                tmp = re.sub(patternMate,'\\3',row[0])    
-            else:
-                pass
+                response = re.sub(pattern,'\\3',row[0])
+                tmp = "0:00:00.0"
 
             delay = self.calculDelay(tmp)
             delay = round(delay,1)           
@@ -133,12 +127,17 @@ class Predictive():
         super().__init__() 
         print("Find Predictive Strikes")    
         self.query = ''
+        self.filter = None
+        self.initFilter = None
 
     def connectDb(self):
         self.postgresDB = psycopg2.connect(database="ChessAnalyse", user='chess', password='VerySecretAwx', host='192.168.1.123', port= '32352')
 
     def closeDb(self):
         self.postgresDB.close()
+    
+    def deleteCache(self):
+        os.remove('/tmp/roadmap.csv')
 
     def parseARgs(self):
         parser = argparse.ArgumentParser(description='statitisque player chessStrike')
@@ -151,24 +150,51 @@ class Predictive():
         self.color = args.color
 
     def candidateStrike(self):
-        self.query = f'select count(*), strike_number, strike, response from public."{self.username}" '
-        self.query += f'where winner = \'opponnent\' and player_color = \'{self.color}\' group by strike, response, strike_number order by 1 desc'
+        self.query = f'select distinct count(*), strike_number, strike, response from public."{self.username}" '
+        self.query += f'where winner = \'opponnent\' and player_color = \'{self.color}\' '
+        if self.initFilter is not None: 
+            self.query += f"and strike like '%{self.initFilter}%' " if self.color == 'White' else f"and response like '%{self.initFilter}%' "
+        self.query += f'group by strike, response, strike_number order by 1 desc'
         self.executeSql()
         self.firstStrikeCandidate = self.selectFetchDb
-        print(self.selectFetchDb)
 
     def roadmapWins(self):
+        csv = open('/tmp/roadmap.csv','w')
+        csv.write(f'number of defeat;player_name;player_color;step;strike;response;next possible Strike;next_wining;next wining_response\n')
+            
+        tmp = []   
         for strike in self.firstStrikeCandidate : 
-            self.query = r"select count(*), REGEXP_REPLACE(strikes->'strikes'->>1, '^(\d+)\. ([\w\-\+\#\=]+) {\[%clk (.*)\]} ([\w\-\+\#\=]+) {\[%clk (.*)\]}',"
-            self.query += r"'\1 \2 \4' ) as seq from public." + f'"games"'
+            self.query = f"select distinct count(*), strikes->'strikes'->>{strike[1]} as seq from public.\"games\" "
             self.query += f"where playername = '{self.username}' "
-            self.query += f"and strikes->'strikes'->>{strike[1]-1}  like '%{strike[1]}. {strike[2]}%{strike[3]}%' "
-            self.query += f"and color != strikes->>'winner'"
+            if strike[1] == 1 :
+                self.query += f"and strikes->'strikes'->>{strike[1]-1}  like '%{strike[1]}. {strike[2]}%{strike[3]}%' "
+            else:
+                winStrike = self.filter.split(' ')
+                self.query += f"and strikes->'strikes'->>{strike[1]-1}  like '%{strike[1]}. {winStrike[0]}%{winStrike[1]}%' "     
+            self.query += f"and color != strikes->>'winner' "
+            self.query += f'and id in ( select archive_id from public."{self.username}" '
+            self.query += f'where winner = \'opponnent\' and player_color = \'{self.color}\' and '
+            self.query += f"strike like '{self.initFilter}' ) " if self.color == 'White' else f"response like '{self.filter}' ) "
             self.query += f"group by seq order by 1 desc"
             self.executeSql()
             self.roadmap = self.selectFetchDb
-            print(self.roadmap)
 
+            for next in self.roadmap:
+                if next[1] is None:
+                    continue
+                elif re.match('^(\d+). ([\w\-\+\#\=]+) ([\w\-\+\#\=]+)',next[1]):
+                    nextStep = re.sub('^(\d+)\. ([\w\-\+\#\=]+) ([\w\-\+\#\=]+)','\\1',next[1])
+                    nextStrike =  re.sub('^(\d+)\. ([\w\-\+\#\=]+) ([\w\-\+\#\=]+)','\\2',next[1])
+                    nextResponse = re.sub('^(\d+)\. ([\w\-\+\#\=]+) ([\w\-\+\#\=]+)','\\3',next[1])
+                else:
+                    nextStep, nextStrike, nextResponse = next[1].split(' ')
+            
+                tmp.append((next[0],int(nextStep),nextStrike,nextResponse))
+                csv.write(f'{strike[0]};{self.username};{self.color};{strike[1]};{strike[2]};{strike[3]};{nextStep};{nextStrike};{nextResponse}\n')
+
+        csv.close()
+        self.firstStrikeCandidate = tmp
+        return len(self.roadmap)
 
     def executeSql(self, type :str = 'None'):
         cursor = self.postgresDB.cursor()
@@ -181,6 +207,11 @@ class Predictive():
         else:
             cursor.execute("COMMIT") 
         cursor.close()
+    
+    def displayRoadMap(self):
+        print(tabulate(pd.read_csv('/tmp/roadmap.csv', sep='[;]', parse_dates=True),headers="keys", tablefmt="grid",showindex=False,maxcolwidths=[None, 20]))
+        print(f'########## Tape next wining strike again {prediction.username} with {prediction.color} ?')
+        self.filter = input('example g3 d5 default (None): ').strip() or None
 
 if __name__ == "__main__" :
     initStat = Stats()
@@ -195,8 +226,14 @@ if __name__ == "__main__" :
 
     prediction = Predictive()
     prediction.parseARgs()
+    print(f'########## Tape a filter first strike for {prediction.username} with {prediction.color} ?')
+    prediction.initFilter = input('example e4 default (None): ').strip() or None
     prediction.connectDb()
     prediction.candidateStrike()
-    prediction.roadmapWins()
+    ended = prediction.roadmapWins()
+    while ended > 0:
+        prediction.displayRoadMap()
+        ended = prediction.roadmapWins()
+    prediction.deleteCache()
     prediction.closeDb()
 
