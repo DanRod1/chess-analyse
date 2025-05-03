@@ -223,17 +223,3 @@ if __name__ == "__main__" :
     initStat.populateStrike(color = 'White')
     initStat.populateStrike(color = 'Black')
     initStat.closeDb()
-
-    prediction = Predictive()
-    prediction.parseARgs()
-    print(f'########## Tape a filter first strike for {prediction.username} with {prediction.color} ?')
-    prediction.initFilter = input('example e4 default (None): ').strip() or None
-    prediction.connectDb()
-    prediction.candidateStrike()
-    ended = prediction.roadmapWins()
-    while ended > 0:
-        prediction.displayRoadMap()
-        ended = prediction.roadmapWins()
-    prediction.deleteCache()
-    prediction.closeDb()
-
