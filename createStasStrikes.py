@@ -17,7 +17,7 @@ class Stats():
 
     def parseARgs(self):
         parser = argparse.ArgumentParser(description='statitisque player chessStrike')
-        parser.add_argument("-u", "--username", action="store", default = 'dinabelenkaya',
+        parser.add_argument("-u", "--username", action="store", default = 'marinmarin1950',
                         help="chesscom user Name")
         args = parser.parse_args()
         self.username = args.username
@@ -59,7 +59,7 @@ class Stats():
         self.query += f'response character varying(10) COLLATE pg_catalog."default" NOT NULL,'
         self.query += f'delay numeric(6,1) NOT NULL, game_id bigint NOT NULL,'
         self.query += f'player_name character varying(20) COLLATE pg_catalog."default" NOT NULL,'
-        self.query += f'CONSTRAINT "strikesStats_pkey" PRIMARY KEY (id))' 
+        self.query += f'CONSTRAINT "{self.username}_pkey" PRIMARY KEY (id))' 
         self.query += f'TABLESPACE pg_default;'
         self.executeSql()
 
@@ -141,7 +141,7 @@ class Predictive():
 
     def parseARgs(self):
         parser = argparse.ArgumentParser(description='statitisque player chessStrike')
-        parser.add_argument("-u", "--username", action="store", default = 'dinabelenkaya',
+        parser.add_argument("-u", "--username", action="store", default = 'marinmarin1950',
                         help="chesscom user Name")
         parser.add_argument("-c", "--color", action="store", default = 'White',
                         help="White or Black for user color")
