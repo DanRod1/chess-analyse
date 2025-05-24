@@ -30,7 +30,7 @@ class Predictive():
         parser.add_argument("-c", "--color", action="store", default = 'White',
                         help="White or Black for user color")
         args = parser.parse_args()
-        self.username = args.username
+        self.username = args.username.lower()
         self.color = args.color
 
     def candidateStrike(self):

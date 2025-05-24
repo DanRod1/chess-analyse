@@ -105,7 +105,7 @@ def getIdUser(data: str):
     return jsonData['username']
     
 if __name__ == "__main__" :
-    url = f"https://api.chess.com/pub/player/{sys.argv[1]}"
+    url = f"https://api.chess.com/pub/player/{sys.argv[1].lower()}"
     #url = f"https://api.chess.com/pub/player/diegiton"
     data = read(url)
     username = getIdUser(data['content'])

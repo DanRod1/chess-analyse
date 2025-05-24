@@ -20,7 +20,7 @@ class Stats():
         parser.add_argument("-u", "--username", action="store", default = 'marinmarin1950',
                         help="chesscom user Name")
         args = parser.parse_args()
-        self.username = args.username
+        self.username = args.username.lower()
 
     def connectDb(self):
         self.postgresDB = psycopg2.connect(database="ChessAnalyse", user='chess', password='VerySecretAwx', host='192.168.1.123', port= '32352')
@@ -78,7 +78,7 @@ class Stats():
         self.query += f"where playername = '{self.username}' and color = 'White' "
         self.query += f"and color != strikes->>'winner' "
         self.executeSql(type = 'select')
-        print(self.query)
+        print
         self.WhiteGame = self.selectFetchDb
 
     def getStrikeBlack(self):
@@ -92,7 +92,6 @@ class Stats():
         self.query += f"where playername = '{self.username}' and color = 'Black' "
         self.query += f"and color != strikes->>'winner' "
         self.executeSql(type = 'select')
-        print(self.query)
         self.BlackGame = self.selectFetchDb
     
     def populateStrike(self, color :str):
