@@ -1,0 +1,4 @@
+predictiveStrike.Predictive.deleteCache
+false
+7d9a0530227715051c4835e8e1c8172f
+os.remove

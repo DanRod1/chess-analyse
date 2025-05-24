@@ -78,6 +78,7 @@ class Stats():
         self.query += f"where playername = '{self.username}' and color = 'White' "
         self.query += f"and color != strikes->>'winner' "
         self.executeSql(type = 'select')
+        print(self.query)
         self.WhiteGame = self.selectFetchDb
 
     def getStrikeBlack(self):
@@ -91,6 +92,7 @@ class Stats():
         self.query += f"where playername = '{self.username}' and color = 'Black' "
         self.query += f"and color != strikes->>'winner' "
         self.executeSql(type = 'select')
+        print(self.query)
         self.BlackGame = self.selectFetchDb
     
     def populateStrike(self, color :str):
@@ -120,6 +122,7 @@ class Stats():
             self.query += f'( strike_number, strike, player_color, response, delay, game_id, player_name, winner, archive_id ) '
             self.query += f'values '
             self.query += f"({strike_number}, \'{strike}\', \'{player_color}\', \'{response}\', \'{delay}\', {self.game_id }, \'{self.username}\', \'{winner}\', {archive_id})"
+            print(self.query)
             self.executeSql()
 
 if __name__ == "__main__" :

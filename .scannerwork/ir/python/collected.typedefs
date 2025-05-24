@@ -1,0 +1,44 @@
+
+objectNoneTypeobject9datetime.tzinfo*$
+__init__datetime.tzinfo.__init__èdatetime.datetimedatetime.date*$
+combinedatetime.datetime.combine*$
+replacedatetime.datetime.replace*
+nowdatetime.datetime.now*,
+fromordinaldatetime.datetime.fromordinal*&
+__init__datetime.datetime.__init__*6
+utcfromtimestamp"datetime.datetime.utcfromtimestamp*0
+fromtimestampdatetime.datetime.fromtimestamp*&
+strptimedatetime.datetime.strptime*"
+utcnowdatetime.datetime.utcnow* 
+todaydatetime.datetime.today**
+
+astimezonedatetime.datetime.astimezoneÕdatetime.date*"
+__init__datetime.date.__init__* 
+replacedatetime.date.replace*
+todaydatetime.date.today*,
+fromtimestampdatetime.date.fromtimestamp*0
+fromisocalendardatetime.date.fromisocalendarintobjectboolobjectintistrtyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversibledtyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversible@typing.Collectiontyping.Containertyping.Iterableobjecttyping.Containerobjecttyping.Iterableobject.typing.Reversibletyping.IterableobjectXbuiltins._StubIteratortyping.Iterable*+
+__init__builtins._StubIterator.__init__predictiveStrike.Predictive*2
+	connectDb%predictiveStrike.Predictive.connectDb*>
+candidateStrike+predictiveStrike.Predictive.candidateStrike*<
+displayRoadMap*predictiveStrike.Predictive.displayRoadMap*0
+__init__$predictiveStrike.Predictive.__init__*.
+closeDb#predictiveStrike.Predictive.closeDb*2
+	parseARgs%predictiveStrike.Predictive.parseARgs*4
+
+executeSql&predictiveStrike.Predictive.executeSql*6
+deleteCache'predictiveStrike.Predictive.deleteCache*6
+roadmapWins'predictiveStrike.Predictive.roadmapWinssuperobject|typing.MutableSequencetyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversible‚listtyping.Sequencetyping.Collectiontyping.Containertyping.Iterabletyping.MutableSequenceobjecttyping.Reversible(psycopg2._psycopg.connectionobject%argparse._AttributeHolderobject&argparse._ActionsContainerobjectZargparse.ArgumentParserargparse._ActionsContainerargparse._AttributeHolderobject,typing.Iteratorobjecttyping.Iterablekrangetyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversiblektupletyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.ReversibleNoneTypeobject
+object@typing.Collectiontyping.Containertyping.Iterableobjecttyping.Containerobjecttyping.IterableobjectPtyping.Mappingtyping.Collectiontyping.Containertyping.Iterableobjectgtyping.MutableMappingtyping.Mappingtyping.Collectiontyping.Containertyping.Iterableobjectmdicttyping.MutableMappingtyping.Mappingtyping.Collectiontyping.Containertyping.Iterableobjectistrtyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversibledtyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversible.typing.Reversibletyping.Iterableobject,typing.Iteratorobjecttyping.Iterableboolobjectintintobject‚listtyping.Sequencetyping.Collectiontyping.Containertyping.Iterabletyping.MutableSequenceobjecttyping.Reversible|typing.MutableSequencetyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversible(psycopg2._psycopg.connectionobject©createStasStrikes.Stats*>
+createStrikeTable)createStasStrikes.Stats.createStrikeTable*2
+calculDelay#createStasStrikes.Stats.calculDelay*8
+getStrikeBlack&createStasStrikes.Stats.getStrikeBlack*8
+populateStrike&createStasStrikes.Stats.populateStrike*.
+	parseARgs!createStasStrikes.Stats.parseARgs*8
+getStrikeWhite&createStasStrikes.Stats.getStrikeWhite*.
+	connectDb!createStasStrikes.Stats.connectDb*,
+__init__ createStasStrikes.Stats.__init__*0
+
+executeSql"createStasStrikes.Stats.executeSql**
+closeDbcreateStasStrikes.Stats.closeDbsuperobject
+objectistrtyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversibledtyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.Reversible@typing.Collectiontyping.Containertyping.Iterableobjecttyping.Containerobjecttyping.Iterableobject.typing.Reversibletyping.IterableobjectNoneTypeobject‚listtyping.Sequencetyping.Collectiontyping.Containertyping.Iterabletyping.MutableSequenceobjecttyping.Reversible|typing.MutableSequencetyping.Sequencetyping.Collectiontyping.Containertyping.Iterableobjecttyping.ReversibleZargparse.ArgumentParserargparse._ActionsContainerargparse._AttributeHolderobject&argparse._ActionsContainerobject%argparse._AttributeHolderobject(psycopg2._psycopg.connectionobjectintobjectfloatobjectboolobjectint,typing.Iteratorobjecttyping.Iterable

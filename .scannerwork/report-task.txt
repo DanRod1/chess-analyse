@@ -1,0 +1,7 @@
+organization=danielrodriguez1971
+projectKey=danielrodriguez1971_chess-analyse
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.63627
+dashboardUrl=https://sonarcloud.io/dashboard?id=danielrodriguez1971_chess-analyse
+ceTaskId=AZb19kzlW_fMTNxDnPd4
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZb19kzlW_fMTNxDnPd4

@@ -1,0 +1,12 @@
+/home/drodriguez/dev/chess-analyse/createStasStrikes.#__main__
+false
+892752ed7aba2c6aa85137a51ebdbdc6
+createStasStrikes.Stats.__init__
+==
+closeDb
+connectDb
+createStrikeTable
+getStrikeBlack
+getStrikeWhite
+parseARgs
+populateStrike

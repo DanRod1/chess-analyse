@@ -1,0 +1,438 @@
+
+)createStasStrikes.Stats.createStrikeTableA
+7/home/drodriguez/dev/chess-analyse/createStasStrikes.py0 0("2*¡*
+22 2(E_
+]
+25 2(B
+%1"__id*E
+
+__unknown_file ()*'
+createStasStrikes.Stats"
+
+usernamer
+p
+2 2(E
+%2"__concat*-
+2 2(4!
+DROP TABLE IF EXISTS public."*
+25 2(B
+
+%1*
+2C 2(D
+"\
+Z
+2 2(E$
+createStasStrikes.Stats"
+query"__id*"
+
+__unknown_file (
+
+%2WU
+3 3(
+%3*7
+
+__unknown_file (
+createStasStrikes.Stats2
+executeSql_
+]
+5; 5(H
+%4"__id*E
+
+__unknown_file ()*'
+createStasStrikes.Stats"
+
+usernamex
+v
+5 5(K
+%5"__concat*3
+5 5(:'%
+#CREATE TABLE IF NOT EXISTS public."*
+5; 5(H
+
+%4*
+5I 5(J
+"\
+Z
+5 5(K$
+createStasStrikes.Stats"
+query"__id*"
+
+__unknown_file (
+
+%5\
+Z
+6 6(
+%6"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+query®
+•
+	6 6(è
+%7"__concat*á
+	6 6(ézx
+v(id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9999999999999999 CACHE 1 ),F
+D
+	6 6(è
+%8"__concat*
+6 6(
+
+%6*
+	6 6(è
+
+%7]
+[
+	6 6(è$
+createStasStrikes.Stats"
+query"__id*"
+
+__unknown_file (
+
+%8\
+Z
+7 7(
+%9"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+queryJ
+H
+7 7(4
+%10"__concat*+
+7 7(3
+archive_id bigint NOT NULL,F
+D
+7 7(4
+%11"__concat*
+7 7(
+
+%9*
+7 7(4
+
+%10]
+[
+7 7(4$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%11]
+[
+8 8(
+%12"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+queryì
+ê
+8 8(|
+%13"__concat*s
+8 8({ge
+cstrike_number integer NOT NULL, winner character varying(20) COLLATE pg_catalog."default" NOT NULL,G
+E
+8 8(|
+%14"__concat*
+8 8(
+
+%12*
+8 8(|
+
+%13]
+[
+8 8(|$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%14]
+[
+9 9(
+%15"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+queryr
+p
+9 9(\
+%16"__concat*S
+9 9([GE
+Cstrike character varying(10) COLLATE pg_catalog."default" NOT NULL,G
+E
+9 9(\
+%17"__concat*
+9 9(
+
+%15*
+9 9(\
+
+%16]
+[
+9 9(\$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%17]
+[
+: :(
+%18"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+queryx
+v
+: :(b
+%19"__concat*Y
+: :(aMK
+Iplayer_color character varying(10) COLLATE pg_catalog."default" NOT NULL,G
+E
+: :(b
+%20"__concat*
+: :(
+
+%18*
+: :(b
+
+%19]
+[
+: :(b$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%20]
+[
+; ;(
+%21"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+queryt
+r
+; ;(^
+%22"__concat*U
+; ;(]IG
+Eresponse character varying(10) COLLATE pg_catalog."default" NOT NULL,G
+E
+; ;(^
+%23"__concat*
+; ;(
+
+%21*
+; ;(^
+
+%22]
+[
+; ;(^$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%23]
+[
+< <(
+%24"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+queryd
+b
+< <(N
+%25"__concat*E
+< <(M97
+5delay numeric(6,1) NOT NULL, game_id bigint NOT NULL,G
+E
+< <(N
+%26"__concat*
+< <(
+
+%24*
+< <(N
+
+%25]
+[
+< <(N$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%26]
+[
+= =(
+%27"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+queryw
+u
+= =(a
+%28"__concat*X
+= =(`LJ
+Hplayer_name character varying(20) COLLATE pg_catalog."default" NOT NULL,G
+E
+= =(a
+%29"__concat*
+= =(
+
+%27*
+= =(a
+
+%28]
+[
+= =(a$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%29]
+[
+> >(
+%30"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+query`
+^
+>% >(2
+%31"__id*E
+
+__unknown_file ()*'
+createStasStrikes.Stats"
+
+usernamez
+x
+> >(L
+%32"__concat*
+> >($
+CONSTRAINT "*
+>% >(2
+
+%31*(
+>3 >(K
+_pkey" PRIMARY KEY (id))G
+E
+> >(L
+%33"__concat*
+> >(
+
+%30*
+> >(L
+
+%32]
+[
+> >(L$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%33]
+[
+? ?(
+%34"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+queryE
+C
+? ?(/
+%35"__concat*&
+? ?(.
+TABLESPACE pg_default;G
+E
+? ?(/
+%36"__concat*
+? ?(
+
+%34*
+? ?(/
+
+%35]
+[
+? ?(/$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%36XV
+@ @(
+%37*7
+
+__unknown_file (
+createStasStrikes.Stats2
+executeSql`
+^
+B6 B(C
+%38"__id*E
+
+__unknown_file ()*'
+createStasStrikes.Stats"
+
+usernameu
+s
+B B(F
+%39"__concat*.
+B B(5" 
+ALTER TABLE IF EXISTS public."*
+B6 B(C
+
+%38*
+BD B(E
+"]
+[
+B B(F$
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%39]
+[
+C C(
+%40"__id*B
+
+__unknown_file (&*$
+createStasStrikes.Stats"
+query>
+<
+C C((
+%41"__concat*
+C C('
+OWNER to chess;G
+E
+C C((
+%42"__concat*
+C C(
+
+%40*
+C C((
+
+%41]
+[
+C C(($
+createStasStrikes.Stats"
+query"__id*#
+
+__unknown_file (
+
+%42XV
+D D(
+%43*7
+
+__unknown_file (
+createStasStrikes.Stats2
+executeSql*
+3*:
+3
+createStasStrikes.py"
+F F(
+implicit returnB
+createStasStrikes.StatsH

@@ -40,6 +40,7 @@ class Predictive():
         if self.initFilter is not None: 
             self.query += f"and strike like '%{self.initFilter}%' "
         self.query += f'group by strike, response, strike_number order by 1 desc'
+        print(self.query)
         self.executeSql()
         
         #display the result

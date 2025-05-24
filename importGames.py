@@ -54,7 +54,11 @@ def convertPgn(data: str):
             strike = re.sub(pattern,'\\1. \\2 \\4',str(value))        
         elif re.match(patternMate,str(value)):
             strike = re.sub(patternMate,'\\1. \\2 End',str(value))  
-        values.append(str(strike))
+        else:
+            strike = "faux-possitif"
+        
+        if strike != "faux-possitif" : 
+            values.append(str(strike))
     
     jsonDict['strikes'] = values
     if games.score.white == '1' : 
@@ -85,6 +89,7 @@ def insertPngValue(urls: dict, user: str ):
                 if dictData['status'] != 'KO' : 
                     query = f"insert into games( playername, color, strikes, year, month, chesscomadvice ) "
                     query += f"values ( '{user}', '{color}', '{jsonData}', {year}, {month}, '{dictData['chesscomadvice']}' )"
+                    print(query)
                     try:
                         cursor.execute(query)
                     except psycopg2.IntegrityError as err:

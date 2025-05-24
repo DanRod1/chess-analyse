@@ -1,0 +1,4 @@
+createStasStrikes.Stats.connectDb
+false
+bee61209b2e1fe0c8cec80b1fa83bfbc
+psycopg2.connect

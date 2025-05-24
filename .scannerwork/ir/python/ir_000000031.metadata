@@ -1,0 +1,4 @@
+predictiveStrike.Predictive.connectDb
+false
+1b43e0759c6f3d94e0aa5f617a1357f6
+psycopg2.connect

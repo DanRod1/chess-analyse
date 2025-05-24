@@ -1,0 +1,12 @@
+/home/drodriguez/dev/chess-analyse/predictiveStrike.#__main__
+false
+da55922880a97ad97245c6bfb9e9a27a
+predictiveStrike.Predictive.__init__
+==
+candidateStrike
+closeDb
+connectDb
+deleteCache
+displayRoadMap
+parseARgs
+roadmapWins
